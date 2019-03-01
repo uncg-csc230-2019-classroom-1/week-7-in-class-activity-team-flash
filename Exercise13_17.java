@@ -22,7 +22,12 @@ public class Exercise13_17 {
     System.out.println("|" + c1 + "| = " + c1.abs());
     
     Complex c3 = (Complex)c1.clone();
-    System.out.println(c1 == c3);
+    if(c1.equals(c3)){
+        System.out.println("true");
+    }
+    else{
+        System.out.println("false");
+    }
     System.out.println(c3.getRealPart());
     System.out.println(c3.getImaginaryPart());
     Complex c4 = new Complex(4, -0.5);
@@ -31,6 +36,7 @@ public class Exercise13_17 {
     System.out.println(java.util.Arrays.toString(list));
   }
 }
+   
 class Complex implements Cloneable, Comparable<Complex>{
     private double a = 0;
     private double b = 0;
@@ -129,5 +135,17 @@ class Complex implements Cloneable, Comparable<Complex>{
     else
       return 0;
   }  
-        
+  
+ @Override
+ public boolean equals(Object x){
+    if(x == this){
+    return true;
+    }
+    if(!(x instanceof Complex)){
+    return false;
+    }
+    Complex y = (Complex) x;
+    return Double.compare(a, y.a) ==0 && Double.compare(b, y.b) ==0;
+    } 
+  
 }
